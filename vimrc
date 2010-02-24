@@ -228,7 +228,8 @@ if has("gui_running")
         set term=gnome-256color
         colorscheme desert
     else
-        colorscheme vibrantink
+        "colorscheme vibrantink
+        colorscheme ir_black
         set guitablabel=%M%t
         set lines=40
         set columns=115
