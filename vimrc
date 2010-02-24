@@ -14,8 +14,13 @@ set showmode    "show current mode down the bottom
 set incsearch   "find the next match as we type the search
 set hlsearch    "hilight searches by default
 
+set showmatch   " automatically show matching brackets. works like it does in bbedit.
+
 set nowrap      "dont wrap lines
 set linebreak   "wrap lines at convenient points
+
+set number      "show line numbers
+set ruler       "always show current positions along the bottom
 
 "statusline setup
 set statusline=%f       "tail of the filename
@@ -170,8 +175,12 @@ endfunction
 "indent settings
 set shiftwidth=4
 set softtabstop=4
+"set ht=4               " ???
 set expandtab
 set autoindent
+
+" turn on the "visual bell" - which is much quieter than the "audio blink"
+set visualbell
 
 "folding settings
 set foldmethod=indent   "fold based on indent
@@ -184,7 +193,11 @@ set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
 
 "display tabs and trailing spaces
 set list
-set listchars=tab:\ \ ,extends:>,precedes:<
+set listchars=tab:>-,trail:-
+"set listchars=tab:\ \ ,extends:>,precedes:<
+
+" turn off expandtab for editing makefiles
+au FileType make setlocal noexpandtab
 
 set formatoptions-=o "dont continue comments when pushing o/O
 
@@ -222,9 +235,13 @@ if has("gui_running")
     endif
     if has("gui_mac") || has("gui_macvim")
         set guifont=Menlo:h15
+        "set gfn=Monaco:h15
+        "set antialias
     endif
     if has("gui_win32") || has("gui_win32s")
         set guifont=Consolas:h12
+        "set gfn=Monaco:h15
+        "set antialias
 				set enc=utf-8
     endif
 else
